@@ -18,14 +18,20 @@ export default function CartItem({
   quantity,
   updateCart,
   removeFromCart,
+  showConfirmScreen,
 }) {
   const [amount, setAmount] = React.useState(quantity);
 
   const values = [1, 2, 3, 4, 5, 6];
 
-  const handleRemoveItem = () => {
+  const handleRemoveItem = async () => {
     const params = { product: productId };
-    removeFromCart(params);
+    try {
+      await removeFromCart(params);
+      showConfirmScreen();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

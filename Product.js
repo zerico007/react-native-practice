@@ -8,11 +8,23 @@ import {
   Text,
 } from "react-native";
 
-export default function Product({ img_url, price, title, addToCart, id }) {
-  function handleAddToCart() {
+export default function Product({
+  img_url,
+  price,
+  title,
+  addToCart,
+  id,
+  showConfirmScreen,
+}) {
+  async function handleAddToCart() {
     const params = { product: id, quantity: 1 };
     console.log(`adding to cart ${title}`, params);
-    addToCart(params);
+    try {
+      await addToCart(params);
+      showConfirmScreen();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
   return (
     <SafeAreaView style={styles.container}>

@@ -10,15 +10,16 @@ import {
   Button,
 } from "react-native";
 import commonStyles from "./Styles";
+import Loader from "./Loading";
 
-export default function Login({ navigation, handleLogin }) {
+export default function Login({ navigation, handleLogin, loading }) {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
 
   async function onLogin() {
     const params = { email, password };
     try {
-      const login = await handleLogin(params);
+      await handleLogin(params);
       //console.log(login);
       navigation.navigate("Apple Shop");
     } catch (error) {
@@ -28,6 +29,7 @@ export default function Login({ navigation, handleLogin }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      {loading && <Loader />}
       <Text style={styles.heading}>Welcome to Apple Shop</Text>
       <FontAwesomeIcon size={40} style={styles.icon} icon={faApple} />
       <SafeAreaView style={styles.form}>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import jwt_decode from "jwt-decode";
@@ -15,6 +14,7 @@ export default function App() {
   const [cartCount, setCartCount] = useState(0);
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
     const count = cart.items
@@ -70,15 +70,19 @@ export default function App() {
   };
 
   const addToCart = (params) => {
-    shopApiInstance
-      .post("/cart", params)
-      .then((response) => {
-        console.log("item added to cart");
-        getCart();
-      })
-      .catch((err) => {
-        console.log("addToCart", err);
-      });
+    return new Promise((resolve, reject) => {
+      shopApiInstance
+        .post("/cart", params)
+        .then((response) => {
+          console.log("item added to cart");
+          getCart();
+          resolve(response.data);
+        })
+        .catch((err) => {
+          console.log("addToCart", err);
+          reject(err);
+        });
+    });
   };
 
   const updateCart = (params) => {
@@ -94,15 +98,19 @@ export default function App() {
   };
 
   const removeFromCart = (params) => {
-    shopApiInstance
-      .put("/cart/remove", params)
-      .then((response) => {
-        console.log("item removed from cart");
-        getCart();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return new Promise((resolve, reject) => {
+      shopApiInstance
+        .put("/cart/remove", params)
+        .then((response) => {
+          console.log("item removed from cart");
+          getCart();
+          resolve(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+    });
   };
 
   const placeOrder = () => {
@@ -121,6 +129,7 @@ export default function App() {
 
   function handleLogin(params) {
     return new Promise((resolve, reject) => {
+      setLoading(true);
       shopApiInstance
         .post("/users/signin", params)
         .then((response) => {
@@ -130,10 +139,12 @@ export default function App() {
           getCart();
           getUser(response.data.token);
           user.role === "administrator" ? getAdminOrders() : getOrders();
+          setLoading(false);
           resolve(response.data);
         })
         .catch((err) => {
           console.log("error", err.message);
+          setLoading(false);
           reject(err);
         });
     });
@@ -161,7 +172,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login" screenOptions={headerOptions}>
         <Stack.Screen name="Login">
-          {(props) => <Login {...props} handleLogin={handleLogin} />}
+          {(props) => (
+            <Login {...props} handleLogin={handleLogin} loading={loading} />
+          )}
         </Stack.Screen>
         <Stack.Screen name="Register">
           {(props) => <Register {...props} />}
@@ -187,12 +200,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "lightgrey",
-  },
-});
