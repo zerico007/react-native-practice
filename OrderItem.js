@@ -15,7 +15,19 @@ export default function OrderItem({
   price,
   quantity,
   subtotal,
+  addToCart,
+  showConfirmScreen,
 }) {
+  async function handleAddToCart() {
+    const params = { product: productId, quantity: 1 };
+    console.log(`adding to cart ${title}`, params);
+    try {
+      await addToCart(params);
+      showConfirmScreen();
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -34,7 +46,7 @@ export default function OrderItem({
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
           {`Subtotal: ${subtotal}`}
         </Text>
-        <Pressable style={styles.button}>
+        <Pressable onPress={handleAddToCart} style={styles.button}>
           <Text style={{ color: "white", fontWeight: "bold" }}>Buy Again</Text>
         </Pressable>
       </View>

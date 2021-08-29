@@ -4,7 +4,13 @@ import moment from "moment";
 import OrderItem from "./OrderItem";
 import { IMAGES_URL } from "./network";
 
-export default function OrderView({ total, date, orderItems }) {
+export default function OrderView({
+  total,
+  date,
+  orderItems,
+  addToCart,
+  showConfirmScreen,
+}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +29,8 @@ export default function OrderView({ total, date, orderItems }) {
           title={item.product}
           productId={item.productId}
           quantity={item.quantity}
-          //addToCart={addToCart}
+          addToCart={addToCart}
+          showConfirmScreen={showConfirmScreen}
           price={item.unitPrice}
           subtotal={item.total}
           key={i}

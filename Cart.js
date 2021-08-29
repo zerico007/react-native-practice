@@ -57,7 +57,12 @@ export default function Cart({ cart, updateCart, removeFromCart, placeOrder }) {
         })}
         {!cart.items && (
           <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              width: "60%",
+            }}
           >
             <Text style={{ fontSize: 16, fontWeight: "bold" }}>
               Your Shopping Cart is Empty. Fill it with goodies that you love!

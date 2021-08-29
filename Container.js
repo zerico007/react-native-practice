@@ -75,7 +75,9 @@ export default function AppContainer({
           )}
         </Tab.Screen>
         <Tab.Screen name="Orders">
-          {(props) => <Orders {...props} orders={orders} />}
+          {(props) => (
+            <Orders {...props} orders={orders} addToCart={addToCart} />
+          )}
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
