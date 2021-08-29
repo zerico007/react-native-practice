@@ -13,13 +13,16 @@ const commonStyles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    borderWidth: 1,
     width: 150,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#333d51",
+    backgroundColor: "#FFCC00",
     borderRadius: 30,
+    shadowColor: "#171717",
+    shadowOffset: { width: -1, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   btnSmall: {
     width: 100,

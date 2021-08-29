@@ -48,7 +48,7 @@ export default function Login({ navigation, handleLogin, loading }) {
           secureTextEntry={true}
         />
         <Pressable style={commonStyles.button} onPress={onLogin}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Login</Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>Login</Text>
         </Pressable>
         <Text
           onPress={() => navigation.navigate("Register")}

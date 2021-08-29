@@ -48,7 +48,7 @@ export default function Register({ onRegister, navigation }) {
         secureTextEntry={true}
       />
       <Pressable style={commonStyles.button} onPress={onRegister}>
-        <Text style={{ color: "white", fontWeight: "bold" }}>Sign Up</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 20 }}>Sign Up</Text>
       </Pressable>
       <Text
         style={{ marginTop: 10 }}
