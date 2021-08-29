@@ -8,18 +8,20 @@ import {
   Text,
 } from "react-native";
 
-export default function Product({ img_url, price, title, addToCart, id }) {
-  function handleAddToCart() {
-    const params = { product: id, quantity: 1 };
-    console.log(`adding to cart ${title}`, params);
-    addToCart(params);
-  }
+export default function OrderItem({
+  productId,
+  image,
+  title,
+  price,
+  quantity,
+  subtotal,
+}) {
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={{ borderRadius: 10 }}
         source={{
-          uri: img_url,
+          uri: image,
           height: 150,
           width: 150,
         }}
@@ -27,15 +29,13 @@ export default function Product({ img_url, price, title, addToCart, id }) {
       <View style={styles.buttons}>
         <Text style={{ marginBottom: 10 }}>{title}</Text>
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
-          {`Price: $${price}.00`}
+          {`Price: $${price}.00 x ${quantity}`}
         </Text>
-        <Pressable onPress={handleAddToCart} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>
-            Add to Cart
-          </Text>
-        </Pressable>
+        <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
+          {`Subtotal: ${subtotal}`}
+        </Text>
         <Pressable style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Video</Text>
+          <Text style={{ color: "white", fontWeight: "bold" }}>Buy Again</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     width: "90%",
     borderWidth: 1,
+    borderColor: "lightgrey",
     backgroundColor: "white",
     alignItems: "center",
     height: 200,
