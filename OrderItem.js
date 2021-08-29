@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from "react-native";
+import commonStyles from "./Styles";
 
 export default function OrderItem({
   productId,
@@ -46,8 +47,8 @@ export default function OrderItem({
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
           {`Subtotal: ${subtotal}`}
         </Text>
-        <Pressable onPress={handleAddToCart} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Buy Again</Text>
+        <Pressable onPress={handleAddToCart} style={commonStyles.btnSmall}>
+          <Text style={{ fontWeight: "bold" }}>Buy Again</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -71,15 +72,5 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-  },
-  button: {
-    borderWidth: 1,
-    width: 100,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#333d51",
-    borderRadius: 5,
-    marginBottom: 15,
   },
 });

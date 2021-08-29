@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from "react-native";
+import commonStyles from "./Styles";
 
 export default function Product({
   img_url,
@@ -41,13 +42,11 @@ export default function Product({
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
           {`Price: $${price}.00`}
         </Text>
-        <Pressable onPress={handleAddToCart} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>
-            Add to Cart
-          </Text>
+        <Pressable onPress={handleAddToCart} style={commonStyles.btnSmall}>
+          <Text style={styles.shadow}>Add to Cart</Text>
         </Pressable>
-        <Pressable style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Video</Text>
+        <Pressable style={commonStyles.btnSmall}>
+          <Text style={{ fontWeight: "bold" }}>Video</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -71,14 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {
-    borderWidth: 1,
-    width: 100,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#333d51",
-    borderRadius: 5,
-    marginBottom: 15,
+  shadow: {
+    fontWeight: "bold",
   },
 });

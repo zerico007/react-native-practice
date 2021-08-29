@@ -11,6 +11,7 @@ import {
 import CartItem from "./CartItem";
 import { IMAGES_URL } from "./network";
 import Confirmation from "./Confirmation";
+import commonStyles from "./Styles";
 
 export default function Cart({ cart, updateCart, removeFromCart, placeOrder }) {
   const [confirm, setConfirm] = React.useState(false);
@@ -34,10 +35,8 @@ export default function Cart({ cart, updateCart, removeFromCart, placeOrder }) {
         style={styles.container}
       >
         {cart.items && (
-          <Pressable onPress={placeOrder} style={styles.button}>
-            <Text style={{ color: "white", fontWeight: "bold" }}>
-              Place Order
-            </Text>
+          <Pressable onPress={placeOrder} style={commonStyles.btnSmall}>
+            <Text style={{ fontWeight: "bold" }}>Place Order</Text>
           </Pressable>
         )}
         {cart.items?.map((item, i) => {
@@ -79,15 +78,5 @@ const styles = StyleSheet.create({
     marginTop: 50,
     flex: 1,
     flexDirection: "column",
-  },
-  button: {
-    borderWidth: 1,
-    width: 100,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#333d51",
-    borderRadius: 5,
-    marginBottom: 15,
   },
 });

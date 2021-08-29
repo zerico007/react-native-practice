@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import commonStyles from "./Styles";
 
 export default function CartItem({
   productId,
@@ -70,8 +71,8 @@ export default function CartItem({
           buttonStyle={styles.dropdownBtnStyle}
           buttonTextStyle={{ fontSize: 16 }}
         />
-        <Pressable onPress={handleRemoveItem} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Remove</Text>
+        <Pressable onPress={handleRemoveItem} style={commonStyles.btnSmall}>
+          <Text style={{ fontWeight: "bold" }}>Remove</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -94,16 +95,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-  },
-  button: {
-    borderWidth: 1,
-    width: 100,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#333d51",
-    borderRadius: 5,
-    marginBottom: 15,
   },
   dropdownBtnStyle: {
     width: 80,
