@@ -22,7 +22,7 @@ export default function AppContainer({
   user,
   orders,
 }) {
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <Button
@@ -71,6 +71,7 @@ export default function AppContainer({
               removeFromCart={removeFromCart}
               updateCart={updateCart}
               placeOrder={placeOrder}
+              cartCount={cartCount}
             />
           )}
         </Tab.Screen>

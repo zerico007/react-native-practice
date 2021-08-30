@@ -13,7 +13,13 @@ import { IMAGES_URL } from "./network";
 import Confirmation from "./Confirmation";
 import commonStyles from "./Styles";
 
-export default function Cart({ cart, updateCart, removeFromCart, placeOrder }) {
+export default function Cart({
+  cart,
+  updateCart,
+  removeFromCart,
+  cartCount,
+  placeOrder,
+}) {
   const [confirm, setConfirm] = React.useState(false);
 
   const showConfirmScreen = () => {
@@ -35,10 +41,17 @@ export default function Cart({ cart, updateCart, removeFromCart, placeOrder }) {
         style={styles.container}
       >
         {cart.items && (
-          <Pressable onPress={placeOrder} style={commonStyles.btnSmall}>
-            <Text style={{ fontWeight: "bold" }}>Place Order</Text>
-          </Pressable>
+          <>
+            <Pressable onPress={placeOrder} style={commonStyles.btnSmall}>
+              <Text style={{ fontWeight: "bold" }}>Place Order</Text>
+            </Pressable>
+            <Text style={{ fontWeight: "bold" }}>
+              {`Subtotal (${cartCount} items): `}
+              {`${cart.Total || "$0.00"}`}
+            </Text>
+          </>
         )}
+
         {cart.items?.map((item, i) => {
           return (
             <CartItem

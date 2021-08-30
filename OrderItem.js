@@ -32,7 +32,7 @@ export default function OrderItem({
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        style={{ borderRadius: 10 }}
+        style={{ borderRadius: 10, resizeMode: "contain" }}
         source={{
           uri: image,
           height: 150,

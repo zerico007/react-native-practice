@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Vibration } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import jwt_decode from "jwt-decode";
@@ -118,6 +119,7 @@ export default function App() {
       .post("/orders")
       .then((response) => {
         console.log("order placed");
+        Vibration.vibrate();
         getCart();
         user.role === "administrator" ? getAdminOrders() : getOrders();
         alert("Order successfully placed!");
@@ -125,6 +127,19 @@ export default function App() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleRegister = (params) => {
+    return new Promise((resolve, reject) => {
+      shopApiInstance
+        .post("/users/signup", params)
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   };
 
   function handleLogin(params) {
@@ -153,6 +168,10 @@ export default function App() {
   function handleLogout() {
     setAuthenticated(false);
     setProducts([]);
+    setOrders([]);
+    setUser({});
+    setCart({});
+    setCartCount(0);
     setBearerToken("");
   }
 
@@ -177,7 +196,7 @@ export default function App() {
           )}
         </Stack.Screen>
         <Stack.Screen name="Register">
-          {(props) => <Register {...props} />}
+          {(props) => <Register {...props} handleRegister={handleRegister} />}
         </Stack.Screen>
         <Stack.Screen name="Apple Shop">
           {(props) => (

@@ -8,13 +8,25 @@ import {
 } from "react-native";
 import commonStyles from "./Styles";
 
-export default function Register({ onRegister, navigation }) {
+export default function Register({ handleRegister, navigation }) {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const [confirmPassword, onChangeConfirm] = useState("");
   const [username, onChangeUsername] = useState("");
 
-  function onRegister() {
+  const passwordsMatch = password === confirmPassword;
+
+  async function onRegister() {
+    if (username && email && passwordsMatch) {
+      params = { email, password, username };
+      try {
+        handleRegister(params);
+        alert("Successfully registered. Login here!");
+        navigation.navigate("Login");
+      } catch (err) {
+        alert(err.message);
+      }
+    }
     alert(`Thanks for registering ${username}`);
   }
 

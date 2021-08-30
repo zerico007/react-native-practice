@@ -45,7 +45,7 @@ export default function Product({
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        style={{ borderRadius: 10 }}
+        style={{ borderRadius: 10, resizeMode: "contain" }}
         source={{
           uri: img_url,
           height: 150,

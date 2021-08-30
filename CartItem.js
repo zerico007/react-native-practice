@@ -23,6 +23,10 @@ export default function CartItem({
 }) {
   const [amount, setAmount] = React.useState(quantity);
 
+  React.useEffect(() => {
+    setAmount(quantity);
+  }, [quantity]);
+
   const values = [1, 2, 3, 4, 5, 6];
 
   const handleRemoveItem = async () => {
@@ -38,7 +42,7 @@ export default function CartItem({
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        style={{ borderRadius: 10 }}
+        style={{ borderRadius: 10, resizeMode: "contain" }}
         source={{
           uri: image,
           height: 150,
