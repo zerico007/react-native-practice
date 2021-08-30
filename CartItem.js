@@ -68,6 +68,8 @@ export default function CartItem({
           dropdownIconPosition={"right"}
           buttonStyle={styles.dropdownBtnStyle}
           buttonTextStyle={{ fontSize: 16 }}
+          dropdownStyle={styles.dropdownStyle}
+          rowStyle={styles.rowStyle}
         />
         <Pressable onPress={handleRemoveItem} style={commonStyles.btnSmall}>
           <Text style={{ fontWeight: "bold" }}>Remove</Text>
@@ -103,4 +105,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#444",
   },
+  dropdownStyle: {
+    borderRadius: 5
+  },
+  rowStyle: {
+    height: 35
+  }
 });
