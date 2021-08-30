@@ -6,6 +6,7 @@ import {
   Pressable,
   View,
   Text,
+  Alert,
 } from "react-native";
 import commonStyles from "./Styles";
 
@@ -15,10 +16,24 @@ export default function Product({
   title,
   addToCart,
   id,
+  videoURL,
   showConfirmScreen,
 }) {
-  async function handleAddToCart() {
-    const params = { product: id, quantity: 1 };
+  const [showVideo, setShowVideo] = React.useState(false);
+
+  function addToCartPopUp() {
+    Alert.prompt(
+      "Add to Cart",
+      "How many would you like to add?",
+      (text) => handleAddToCart(+text),
+      "plain-text",
+      "",
+      "numeric"
+    );
+  }
+
+  async function handleAddToCart(quantity) {
+    const params = { product: id, quantity };
     console.log(`adding to cart ${title}`, params);
     try {
       await addToCart(params);
@@ -42,10 +57,13 @@ export default function Product({
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
           {`Price: $${price}.00`}
         </Text>
-        <Pressable onPress={handleAddToCart} style={commonStyles.btnSmall}>
+        <Pressable onPress={addToCartPopUp} style={commonStyles.btnSmall}>
           <Text style={styles.shadow}>Add to Cart</Text>
         </Pressable>
-        <Pressable style={commonStyles.btnSmall}>
+        <Pressable
+          onPress={() => setShowVideo(true)}
+          style={commonStyles.btnSmall}
+        >
           <Text style={{ fontWeight: "bold" }}>Video</Text>
         </Pressable>
       </View>
@@ -72,5 +90,12 @@ const styles = StyleSheet.create({
   },
   shadow: {
     fontWeight: "bold",
+  },
+  backgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });

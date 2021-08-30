@@ -36,6 +36,7 @@ export default function Catalogue({ products, addToCart }) {
               showConfirmScreen={showConfirmScreen}
               title={product.name}
               price={product.price}
+              videoURL={product.videoURL}
               id={product.id}
             />
           );
