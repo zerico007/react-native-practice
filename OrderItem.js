@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from "react-native";
+import ProductImage from "./ProductImage";
 import commonStyles from "./Styles";
 
 export default function OrderItem({
@@ -31,14 +32,7 @@ export default function OrderItem({
   }
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={{ borderRadius: 10, resizeMode: "contain" }}
-        source={{
-          uri: image,
-          height: 150,
-          width: 150,
-        }}
-      />
+      <ProductImage img_url={image} />
       <View style={styles.buttons}>
         <Text style={{ marginBottom: 10 }}>{title}</Text>
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>

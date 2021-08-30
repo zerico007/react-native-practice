@@ -9,6 +9,7 @@ import {
   Alert,
 } from "react-native";
 import commonStyles from "./Styles";
+import ProductImage from "./ProductImage";
 
 export default function Product({
   img_url,
@@ -44,14 +45,7 @@ export default function Product({
   }
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={{ borderRadius: 10, resizeMode: "contain" }}
-        source={{
-          uri: img_url,
-          height: 150,
-          width: 150,
-        }}
-      />
+      <ProductImage img_url={img_url}/>
       <View style={styles.buttons}>
         <Text style={{ marginBottom: 10 }}>{title}</Text>
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
@@ -60,12 +54,12 @@ export default function Product({
         <Pressable onPress={addToCartPopUp} style={commonStyles.btnSmall}>
           <Text style={styles.shadow}>Add to Cart</Text>
         </Pressable>
-        <Pressable
+        {/* <Pressable
           onPress={() => setShowVideo(true)}
           style={commonStyles.btnSmall}
         >
           <Text style={{ fontWeight: "bold" }}>Video</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     </SafeAreaView>
   );
