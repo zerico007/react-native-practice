@@ -6,7 +6,7 @@ import {
   ScrollView,
   Pressable,
   SafeAreaView,
-  Vibration,
+  Vibration
 } from "react-native";
 import CartItem from "./CartItem";
 import { IMAGES_URL } from "./network";

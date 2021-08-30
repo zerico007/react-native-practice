@@ -52,8 +52,6 @@ export default function AppContainer({
             } else if (route.name === "Orders") {
               iconName = "box-open";
             }
-
-            // You can return any component that you like here!
             return <Icon name={iconName} size={size} color={color} />;
           },
         })}
