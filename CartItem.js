@@ -32,8 +32,8 @@ export default function CartItem({
   const handleRemoveItem = async () => {
     const params = { product: productId };
     try {
-      await removeFromCart(params);
       showConfirmScreen();
+      await removeFromCart(params);
     } catch (error) {
       console.log(error.message);
     }

@@ -27,7 +27,6 @@ export default function Register({ handleRegister, navigation }) {
         alert(err.message);
       }
     }
-    alert(`Thanks for registering ${username}`);
   }
 
   return (

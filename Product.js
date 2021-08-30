@@ -36,8 +36,8 @@ export default function Product({
     const params = { product: id, quantity };
     console.log(`adding to cart ${title}`, params);
     try {
-      await addToCart(params);
       showConfirmScreen();
+      await addToCart(params);
     } catch (err) {
       console.log(err.message);
     }
