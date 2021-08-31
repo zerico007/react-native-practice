@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text } from "react-native";
+import { Button, Text, View, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -27,7 +27,7 @@ export default function AppContainer({
       headerRight: () => (
         <Button
           title="Logout"
-          color="white"
+          color={Platform.OS === "android" ? "#253951" : "white"}
           onPress={() => {
             handleLogout();
             navigation.navigate("Login");

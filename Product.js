@@ -2,7 +2,7 @@ import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
-  Image,
+  Platform,
   Pressable,
   View,
   Text,
@@ -45,13 +45,18 @@ export default function Product({
   }
   return (
     <SafeAreaView style={styles.container}>
-      <ProductImage img_url={img_url}/>
+      <ProductImage img_url={img_url} />
       <View style={styles.buttons}>
         <Text style={{ marginBottom: 10 }}>{title}</Text>
         <Text style={{ marginBottom: 10, fontWeight: "bold" }}>
           {`Price: $${price}.00`}
         </Text>
-        <Pressable onPress={addToCartPopUp} style={commonStyles.btnSmall}>
+        <Pressable
+          onPress={() =>
+            Platform.OS === "android" ? handleAddToCart(1) : addToCartPopUp()
+          }
+          style={commonStyles.btnSmall}
+        >
           <Text style={styles.shadow}>Add to Cart</Text>
         </Pressable>
         {/* <Pressable
