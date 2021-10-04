@@ -42,13 +42,17 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  const assignOrders = (response) => {
+    response.data.orders
+      ? setOrders(response.data.orders.reverse())
+      : setOrders([]);
+  };
+
   const getAdminOrders = () => {
     shopApiInstance
       .get("/orders/admin")
       .then((response) => {
-        response.data.orders
-          ? setOrders(response.data.orders.reverse())
-          : setOrders([]);
+        assignOrders(response);
       })
       .catch((err) => console.log(err));
   };
@@ -57,16 +61,14 @@ export default function App() {
     shopApiInstance
       .get("/orders")
       .then((response) => {
-        response.data.orders
-          ? setOrders(response.data.orders.reverse())
-          : setOrders([]);
+        assignOrders(response);
       })
       .catch((err) => console.log(err));
   };
 
   const getUser = (token) => {
-    const user = jwt_decode(token);
-    const { username, email, role, password, userId } = user;
+    const loggedInUser = jwt_decode(token);
+    const { username, email, role, password, userId } = loggedInUser;
     setUser({ username, email, role, password, userId });
   };
 
